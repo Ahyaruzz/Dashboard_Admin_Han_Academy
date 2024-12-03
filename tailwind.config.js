@@ -12,7 +12,12 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['"Open Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            },
+            colors: {
+                primary:'#E53935',
+                secondary:'#5F7D8B',
+                blackButton:'#212121',
             },
         },
     },
