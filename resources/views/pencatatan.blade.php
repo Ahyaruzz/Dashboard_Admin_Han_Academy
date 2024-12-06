@@ -66,6 +66,7 @@
                 <select class="mt-1 w-full h-10 border border-gray-400 rounded-md shadow-sm text-base focus:border-indigo-500 focus:ring-indigo-500">
                   <option class="text-grey-800">Pilih membership...</option>
                   <option>Regular</option>
+                  <option>Elite</option>
                   <option>VIP</option>
                   <option>Kids Warrior</option>
                 </select>
