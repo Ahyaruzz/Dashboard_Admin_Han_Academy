@@ -84,7 +84,7 @@
               <div class="justify-items-center">
                 <button type="submit" class=" justify-center bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md">
                     Simpan
-                  </button>
+                </button>
               </div>
             </form>
           </main>
