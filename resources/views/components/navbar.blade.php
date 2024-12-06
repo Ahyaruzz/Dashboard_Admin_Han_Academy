@@ -1,4 +1,4 @@
-<div class="z-0 ">
+<div class="z-0">
     <div class="flex gap-8 justify-end xl:gap-8 bg-white shadow">
         <button class="hamburger md:hidden flex flex-col gap-1.5 pt-6 ">
                 <span class="block w-6 h-0.5 bg-secondary"></span>
@@ -20,7 +20,7 @@
         </div>
    </div>
    <!--header -->
-   <div class="mt-6 ml-6 xl:top-0 xl:ml-80  xl:fixed xl:items-center xl:gap-4">
+   <div class="mt-6 ml-6 xl:ml-80 xl:absolute xl:top-0 xl:items-center xl:gap-4">
         <div class="flex gap-3">
             <p class="text-secondary text-xs xl:text-sm ">Dashboard</p>
             <p class="text-xs xl:text-sm">/</p>
