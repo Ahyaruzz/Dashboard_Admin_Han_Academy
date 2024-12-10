@@ -14,8 +14,8 @@
         Pencatatan
     </x-navbar>
     <x-sidebar></x-sidebar>
-    <div class="xl:ml-80 mt-2">
-        <main class="flex-1 p-10">
+    <div class="xl:ml-80 mt-4">
+        <main class="flex-1 p-4">
             <form class="bg-white p-8 rounded-lg shadow-md space-y-6">
               <div>
                 <label class="block gap-2 text-sm font-semibold text-black">Nama Anggota</label>
