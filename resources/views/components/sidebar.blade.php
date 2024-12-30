@@ -17,12 +17,6 @@
                     Anggota
                 </a>
             </li>
-            <li class="mt-8 mx-10 pl-7 rounded-xl {{ request()->is('pencatatan') ? 'bg-primary' : '' }}">
-                <a class="font-bold text-base w-full h-full gap-5 flex items-center {{ request()->is('pencatatan') ? 'text-white' : 'text-secondary' }}" href="/pencatatan">
-                    <svg class="my-5 {{ request()->is('pencatatan') ? 'fill-white' : 'fill-secondary' }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" ><path d="M20 2C20.5523 2 21 2.44772 21 3V6.757L12.0012 15.7562L11.995 19.995L16.2414 20.0012L21 15.242V21C21 21.5523 20.5523 22 20 22H4C3.44772 22 3 21.5523 3 21V3C3 2.44772 3.44772 2 4 2H20ZM21.7782 8.80761L23.1924 10.2218L15.4142 18L13.9979 17.9979L14 16.5858L21.7782 8.80761ZM12 12H7V14H12V12ZM15 8H7V10H15V8Z"></path></svg>
-                    Pencatatan
-                </a>
-            </li>
             <li class="mt-8 mx-10 pl-7 rounded-xl {{ request()->is('kelas') ? 'bg-primary' : '' }}">
                 <a class="font-bold text-base w-full h-full flex items-center gap-5 {{ request()->is('kelas') ? 'text-white' : 'text-secondary' }}" href="/kelas">
                     <svg class="my-5 {{ request()->is('kelas') ? 'fill-white' : 'fill-secondary' }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" ><path d="M20 22H6.5C4.567 22 3 20.433 3 18.5V5C3 3.34315 4.34315 2 6 2H20C20.5523 2 21 2.44772 21 3V21C21 21.5523 20.5523 22 20 22ZM19 20V17H6.5C5.67157 17 5 17.6716 5 18.5C5 19.3284 5.67157 20 6.5 20H19ZM10 4V12L13.5 10L17 12V4H10Z"></path></svg>

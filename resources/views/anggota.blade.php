@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
@@ -14,19 +15,15 @@
         Anggota
     </x-navbar>
     <x-sidebar></x-sidebar>
-    <div class="xl:ml-80 mt-4">
+    <div class="xl:ml-80 mt-4 mr-6">
         <!-- Table Section -->
+        
         <section class="bg-white shadow rounded-lg p-16">
                 <!-- Filter and Search -->
                 <div class="flex justify-between items-center mb-4">
                     <div class="flex items-center space-x-4">
                         <!-- Tombol Filter -->
-                        <button class="flex items-center bg-gray-200 border border-gray-300 text-gray-700 py-2 px-4 rounded hover:bg-gray-300 transition">
-                            <!-- Filter Icon -->
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 0 1-.659 1.591l-5.432 5.432a2.25 2.25 0 0 0-.659 1.591v2.927a2.25 2.25 0 0 1-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 0 0-.659-1.591L3.659 7.409A2.25 2.25 0 0 1 3 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0 1 12 3Z" />
-                            </svg>
-                            
+                        
                         </button>
                         <!-- Input Search -->
                         <div class="relative">
@@ -37,13 +34,10 @@
                             </svg>
                         </div>
                     </div>
-                    <!-- Tombol Hapus -->
-                    <button class="flex items-center py-2 px-4 bg-black text-white rounded">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-                      </svg>
-                      <span class="ml-2">Hapus</span>
+                    <button onclick="openModal()" class="py-2 px-4 bg-blackButton text-white rounded transition">
+                        Tambah Anggota
                     </button>
+                    <!-- Tombol Hapus -->
                 </div>
 
                 <!-- Tabel -->
@@ -53,7 +47,6 @@
                             <th class="border px-4 py-2">Nama</th>
                             <th class="border px-4 py-2">No Telp</th>
                             <th class="border px-4 py-2">Jenis Kelamin</th>
-                            <th class="border px-4 py-2">Sabuk</th>
                             <th class="border px-4 py-2">Beladiri</th>
                             <th class="border px-4 py-2">Membership</th>
                             <th class="border px-4 py-2">Coach</th>
@@ -65,7 +58,6 @@
                             <td class="border px-4 py-2">Dio</td>
                             <td class="border px-4 py-2">0812987414141</td>
                             <td class="border px-4 py-2">Laki-Laki</td>
-                            <td class="border px-4 py-2">Biru</td>
                             <td class="border px-4 py-2">MMA</td>
                             <td class="border px-4 py-2">VIP</td>
                             <td class="border px-4 py-2">Abe</td>
@@ -73,6 +65,68 @@
                         </tr>
                     </tbody>
                 </table>
+                <div id="modalForm" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center hidden">
+                    <div class="bg-white rounded-lg shadow-lg w-1/3">
+                        <!-- Header Modal -->
+                        <div class="px-4 py-2 bg-primary text-white flex justify-between items-center">
+                            <h2 class="text-lg font-semibold">Tambah Anggota</h2>
+                            <button onclick="closeModal()" class="text-white">&times;</button>
+                        </div>
+                        <!-- Form Modal -->
+                        <form action="{{ route('anggota.store') }}" method="POST" enctype="multipart/form-data" class="p-4">
+                            @csrf
+                            <div class="mb-4">
+                                <label for="name" class="block text-sm font-medium text-gray-700">Nama</label>
+                                <input type="text" id="name" name="name" class="mt-1 block w-full px-3 py-2 border rounded-lg focus:ring focus:ring-red-300 focus:outline-none">
+                            </div>
+                            <div class="mb-4">
+                                <label for="phone" class="block text-sm font-medium text-gray-700">No Telp</label>
+                                <input type="text" id="phone" name="phone" class="mt-1 block w-full px-3 py-2 border rounded-lg focus:ring focus:ring-red-300 focus:outline-none">
+                            </div>
+                            <div class="mb-4">
+                                <label for="gender" class="block text-sm font-medium text-gray-700">Jenis Kelamin</label>
+                                <select id="gender" name="gender" class="mt-1 block w-full px-3 py-2 border rounded-lg focus:ring focus:ring-red-300 focus:outline-none">
+                                    <option value="Laki-Laki">Laki-Laki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label for="beladiri" class="block text-sm font-medium text-gray-700">Beladiri</label>
+                                <select id="beladiri" name="beladiri" class="mt-1 block w-full px-3 py-2 border rounded-lg focus:ring focus:ring-red-300 focus:outline-none">
+                                    <option value="MT">Muay Thai</option>
+                                    <option value="KW">Kids Warrior</option>
+                                    <option value="MMA">MMA</option>
+                                    <option value="PC">VIP Class</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label for="membership" class="block text-sm font-medium text-gray-700">Membership</label>
+                                <select id="membership" name="membership" class="mt-1 block w-full px-3 py-2 border rounded-lg focus:ring focus:ring-red-300 focus:outline-none">
+                                    <option value="RG">Regular</option>
+                                    <option value="ET">Elite</option>
+                                    <option value="VP">VIP</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label for="coach" class="block text-sm font-medium text-gray-700">Coach</label>
+                                <select id="coach" name="coach" class="mt-1 block w-full px-3 py-2 border rounded-lg focus:ring focus:ring-red-300 focus:outline-none">
+                                    <option value="MT">Abe</option>
+                                    <option value="KW">Jonathan</option>
+                                    <option value="MMA">Alex</option>
+                                    <option value="MMA">Samuel</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label for="bukti_transfer" class="block text-sm font-medium text-gray-700">Bukti Transfer</label>
+                                <input type="file" id="bukti_transfer" name="bukti_transfer" accept="image/*" class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:ring focus:ring-red-300 focus:outline-none">
+                            </div>
+                            <div class="flex justify-end space-x-2">
+                                <button type="button" onclick="closeModal()" class="px-4 py-2 bg-gray-500 text-white rounded">Cancel</button>
+                                <button type="submit" class="px-4 py-2 bg-primary text-white rounded">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </section>
         </main>
     </div>
