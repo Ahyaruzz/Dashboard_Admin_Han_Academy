@@ -15,10 +15,10 @@
         Anggota
     </x-navbar>
     <x-sidebar></x-sidebar>
-    <div class="xl:ml-80 mt-4 mr-6">
+    <div class="xl:ml-80 mt-6 mr-6">
         <!-- Table Section -->
         
-        <section class="bg-white shadow rounded-lg p-16">
+        <section class="bg-white shadow rounded-lg p-10">
                 <!-- Filter and Search -->
                 <div class="flex justify-between items-center mb-4">
                     <div class="flex items-center space-x-4">
