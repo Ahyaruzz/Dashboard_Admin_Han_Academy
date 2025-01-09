@@ -44,6 +44,7 @@
                 <table class="w-full text-left border-collapse border border-gray-300">
                     <thead class="bg-gray-100">
                         <tr>
+                            <th class="border px-4 py-2">No</th>
                             <th class="border px-4 py-2">Nama</th>
                             <th class="border px-4 py-2">No Telp</th>
                             <th class="border px-4 py-2">Jenis Kelamin</th>
@@ -51,18 +52,31 @@
                             <th class="border px-4 py-2">Membership</th>
                             <th class="border px-4 py-2">Coach</th>
                             <th class="border px-4 py-2">Aksi</th>
+
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($anggota as $index => $item)
                         <tr class="hover:bg-gray-50">
-                            <td class="border px-4 py-2">Dio</td>
-                            <td class="border px-4 py-2">0812987414141</td>
-                            <td class="border px-4 py-2">Laki-Laki</td>
-                            <td class="border px-4 py-2">MMA</td>
-                            <td class="border px-4 py-2">VIP</td>
-                            <td class="border px-4 py-2">Abe</td>
-                            <td class="border px-4 py-2 text-blue-500 cursor-pointer hover:underline">Edit</td>
+                            <td class="border px-4 py-2">{{ $index + 1 }}</td>
+                            <td class="border px-4 py-2">{{ $item->name }}</td>
+                            <td class="border px-4 py-2">{{ $item->phone }}</td>
+                            <td class="border px-4 py-2">{{ $item->gender }}</td>
+                            <td class="border px-4 py-2">{{ $item->beladiri }}</td>
+                            <td class="border px-4 py-2">{{ $item->membership }}</td>
+                            <td class="border px-4 py-2">{{ $item->coach }}</td>
+                            <td class="border px-4 py-2 flex space-x-2">
+                                <!-- Button Edit -->
+                                <button onclick="editModal({{ $item }})" class="text-blue-500 hover:underline">Edit</button>
+                                <!-- Button Hapus -->
+                                <form method="POST" action="{{ route('anggota.destroy', $item->id) }}" onsubmit="return confirmDelete(event);">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-500 hover:underline">Hapus</button>
+                                </form>
+                            </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
                 <div id="modalForm" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center hidden">
@@ -73,8 +87,10 @@
                             <button onclick="closeModal()" class="text-white">&times;</button>
                         </div>
                         <!-- Form Modal -->
-                        <form action="{{ route('anggota.store') }}" method="POST" enctype="multipart/form-data" class="p-4">
-                            @csrf
+                        <form method="POST" action="{{ route('anggota.store') }}" enctype="multipart/form-data" class="p-4">
+                            
+                            @csrf 
+
                             <div class="mb-4">
                                 <label for="name" class="block text-sm font-medium text-gray-700">Nama</label>
                                 <input type="text" id="name" name="name" class="mt-1 block w-full px-3 py-2 border rounded-lg focus:ring focus:ring-red-300 focus:outline-none">
@@ -93,32 +109,28 @@
                             <div class="mb-4">
                                 <label for="beladiri" class="block text-sm font-medium text-gray-700">Beladiri</label>
                                 <select id="beladiri" name="beladiri" class="mt-1 block w-full px-3 py-2 border rounded-lg focus:ring focus:ring-red-300 focus:outline-none">
-                                    <option value="MT">Muay Thai</option>
-                                    <option value="KW">Kids Warrior</option>
-                                    <option value="MMA">MMA</option>
-                                    <option value="PC">VIP Class</option>
+                                    <option value="Muay Thai">Muay Thai</option>
+                                    <option value="Kids Warrior">Kids Warrior</option>
+                                    <option value="MMA<">MMA</option>
+                                    <option value="VIP Class">VIP Class</option>
                                 </select>
                             </div>
                             <div class="mb-4">
                                 <label for="membership" class="block text-sm font-medium text-gray-700">Membership</label>
                                 <select id="membership" name="membership" class="mt-1 block w-full px-3 py-2 border rounded-lg focus:ring focus:ring-red-300 focus:outline-none">
-                                    <option value="RG">Regular</option>
-                                    <option value="ET">Elite</option>
-                                    <option value="VP">VIP</option>
+                                    <option value="Regular">Regular</option>
+                                    <option value="Elite">Elite</option>
+                                    <option value="VIP">VIP</option>
                                 </select>
                             </div>
                             <div class="mb-4">
                                 <label for="coach" class="block text-sm font-medium text-gray-700">Coach</label>
                                 <select id="coach" name="coach" class="mt-1 block w-full px-3 py-2 border rounded-lg focus:ring focus:ring-red-300 focus:outline-none">
-                                    <option value="MT">Abe</option>
-                                    <option value="KW">Jonathan</option>
-                                    <option value="MMA">Alex</option>
-                                    <option value="MMA">Samuel</option>
+                                    <option value="Abe">Abe</option>
+                                    <option value="Jonathan">Jonathan</option>
+                                    <option value="Alex">Alex</option>
+                                    <option value="Samuel">Samuel</option>
                                 </select>
-                            </div>
-                            <div class="mb-4">
-                                <label for="bukti_transfer" class="block text-sm font-medium text-gray-700">Bukti Transfer</label>
-                                <input type="file" id="bukti_transfer" name="bukti_transfer" accept="image/*" class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:ring focus:ring-red-300 focus:outline-none">
                             </div>
                             <div class="flex justify-end space-x-2">
                                 <button type="button" onclick="closeModal()" class="px-4 py-2 bg-gray-500 text-white rounded">Cancel</button>
@@ -130,9 +142,14 @@
             </section>
         </main>
     </div>
-</body>
-</html>
-
-    </div>
+    <script>
+        function confirmDelete(event) {
+            if (!confirm('Apakah Anda yakin ingin menghapus data ini?')) {
+                event.preventDefault(); // Mencegah form dikirim jika pengguna memilih "Cancel"
+                return false;
+            }
+            return true;
+        }
+    </script>
 </body>
 </html>
