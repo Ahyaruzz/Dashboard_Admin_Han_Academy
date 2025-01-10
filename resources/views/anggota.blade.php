@@ -70,7 +70,7 @@
                             <td class="border px-4 py-2">{{ $item->beladiri }}</td>
                             <td class="border px-4 py-2">{{ $item->membership }}</td>
                             <td class="border px-4 py-2">{{ $item->coach }}</td>
-                            <td class="border px-4 py-2 flex space-x-2">
+                            <td class="border px-4 py-2 flex gap-1">
                                 <!-- Button Edit -->
                                 <button onclick="editModal({{ json_encode($item) }})" class="text-blue-500 hover:underline">
                                     <i class="fa-regular fa-pen-to-square"></i>
@@ -224,33 +224,33 @@
         }
 
         function editModal(item) {
-    // Mengisi data ke dalam form
-    document.getElementById('editId').value = item.id;
-    document.getElementById('editName').value = item.name;
-    document.getElementById('editPhone').value = item.phone;
-    document.getElementById('editGender').value = item.gender;
-    document.getElementById('editBeladiri').value = item.beladiri;
-    document.getElementById('editMembership').value = item.membership;
-    document.getElementById('editCoach').value = item.coach;
+        // Mengisi data ke dalam form
+        document.getElementById('editId').value = item.id;
+        document.getElementById('editName').value = item.name;
+        document.getElementById('editPhone').value = item.phone;
+        document.getElementById('editGender').value = item.gender;
+        document.getElementById('editBeladiri').value = item.beladiri;
+        document.getElementById('editMembership').value = item.membership;
+        document.getElementById('editCoach').value = item.coach;
 
-    // Ubah action form sesuai dengan URL edit
-    document.getElementById('editForm').action = `/anggota/${item.id}`;
+        // Ubah action form sesuai dengan URL edit
+        document.getElementById('editForm').action = `/anggota/${item.id}`;
 
-    // Tampilkan modal
-    document.getElementById('editModal').classList.remove('hidden');
-    }
+        // Tampilkan modal
+        document.getElementById('editModal').classList.remove('hidden');
+        }
 
-    function closeEditModal() {
-        document.getElementById('editModal').classList.add('hidden');
-    }
-    @if (session('success'))
-        Swal.fire({
-            title: 'Selamat!',
-            text: '{{ session('success') }}',
-            icon: 'success',
-            confirmButtonText: 'OK'
-        });
-    @endif
+        function closeEditModal() {
+            document.getElementById('editModal').classList.add('hidden');
+        }
+        @if (session('success'))
+            Swal.fire({
+                title: 'Selamat!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        @endif
     </script>
 </body>
 </html>

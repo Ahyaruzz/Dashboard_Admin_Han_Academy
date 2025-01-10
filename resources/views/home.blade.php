@@ -26,7 +26,7 @@
             </div>
             <div>
                 <div class="text-sm text-black">Total Member</div>
-                <div class="text-2xl text-right font-bold text-black">458</div>
+                <div class="text-2xl text-right font-bold text-black">{{ $totalAnggota }}</div>
             </div>
         </div>
         <!-- Total Kelas -->
@@ -38,7 +38,7 @@
             </div>
             <div>
                 <div class="text-sm text-black">Total Kelas</div>
-                <div class="text-2xl text-right font-bold text-black">12</div>
+                <div class="text-2xl text-right font-bold text-black">4</div>
             </div>
         </div>
         <!-- Total Sabuk Hitam -->
@@ -49,8 +49,8 @@
                 </svg>
             </div>
             <div>
-                <div class="text-sm text-black">Total Sabuk Hitam</div>
-                <div class="text-2xl text-right font-bold text-black">37</div>
+                <div class="text-sm text-black">Total VIP</div>
+                <div class="text-2xl text-right font-bold text-black">{{ $totalVIP }}</div>
             </div>
         </div>
         <!-- Total Coach -->
@@ -62,7 +62,7 @@
             </div>
             <div>
                 <div class="text-sm text-black">Total Coach</div>
-                <div class="text-2xl text-right font-bold text-black">5</div>
+                <div class="text-2xl text-right font-bold text-black">4</div>
             </div>
         </div>
     </div>

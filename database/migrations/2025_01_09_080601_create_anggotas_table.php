@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone');
-            $table->string('gender');
-            $table->string('beladiri');
-            $table->string('membership');
-            $table->string('coach');
+            $table->enum('gender', ['Laki-Laki','Perempuan']);
+            $table->enum('beladiri', ['Muay Thai','Kids Warrior','MMA','VIP Class']);
+            $table->enum('membership', ['Regular','Elite','VIP']);
+            $table->enum('coach', ['Alex','Abe','Jonathan','Samuel']);
             $table->timestamps();
         });
     }
