@@ -36,4 +36,12 @@ class AnggotaController extends Controller
 
         return redirect()->route('anggota.index')->with('success', 'Anggota deleted successfully.');
     }
+
+    public function update(Request $request, $id)
+    {
+    $anggota = Anggota::findOrFail($id);
+    $anggota->update($request->all());
+    return redirect()->back()->with('success', 'Data anggota berhasil diperbarui.');
+    }
+
 }

@@ -12,6 +12,8 @@ Route::get('/kelas', function () {
 });
 Route::resource('anggota', AnggotaController::class);
 
+Route::put('/anggota/{id}', [AnggotaController::class, 'update'])->name('anggota.update');
+
 
 
 
