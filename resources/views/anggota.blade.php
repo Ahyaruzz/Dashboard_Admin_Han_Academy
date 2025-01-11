@@ -119,7 +119,7 @@
                                     <option value="" disabled selected>Pilih Beladiri</option>
                                     <option value="Muay Thai">Muay Thai</option>
                                     <option value="Kids Warrior">Kids Warrior</option>
-                                    <option value="MMA<">MMA</option>
+                                    <option value="MMA">MMA</option>
                                     <option value="VIP Class">VIP Class</option>
                                 </select>
                             </div>
