@@ -8,6 +8,7 @@ use App\Models\Admin;
 
 class AdminController extends Controller
 {
+
     public function login()
     {
         return view('login');
@@ -24,7 +25,7 @@ class AdminController extends Controller
 
         if ($admin && $credentials['password'] === $admin->password) {
             Auth::guard('admin')->login($admin);
-            return redirect()->intended(route('anggota.home'));
+            return redirect()->route('anggota.home'); 
         }
 
         return back()->withErrors([
@@ -38,6 +39,6 @@ class AdminController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         
-        return redirect()->route('login');
+        return redirect('/'); 
     }
 }
