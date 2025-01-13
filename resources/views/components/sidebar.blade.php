@@ -23,17 +23,17 @@
                     Kelas
                 </a>
             </li>
-            <li class="mt-8 mx-10 pl-7 rounded-xl {{ request()->is('logout') ? 'bg-primary' : '' }}">
+            {{-- <li class="mt-12 mx-10 pl-6 rounded-xl {{ request()->is('logout') ? 'bg-primary' : '' }}">
                 <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
                     @csrf
                     <button type="button" onclick="submitLogout()" class="font-bold text-base w-full h-full flex items-center gap-5 {{ request()->is('logout') ? 'text-white' : 'text-secondary' }}">
-                        <svg class="my-5 {{ request()->is('logout') ? 'fill-white' : 'fill-secondary' }}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
-                            <path d="M20 22H6.5C4.567 22 3 20.433 3 18.5V5C3 3.34315 4.34315 2 6 2H20C20.5523 2 21 2.44772 21 3V21C21 21.5523 20.5523 22 20 22ZM19 20V17H6.5C5.67157 17 5 17.6716 5 18.5C5 19.3284 5.67157 20 6.5 20H19ZM10 4V12L13.5 10L17 12V4H10Z"></path>
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
+                          </svg>                          
                         Logout
                     </button>
                 </form>
-            </li>
+            </li> --}}
         </ul>
     </div>
 </div>

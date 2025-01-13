@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anggota;
+use App\Models\Coach;
+use App\Models\Kelas;
 use Illuminate\Http\Request;
 
 class AnggotaController extends Controller
@@ -30,7 +32,13 @@ class AnggotaController extends Controller
     public function index()
     {
         $anggota = Anggota::all();
-        return view('anggota', compact('anggota'));
+        $kelas = Kelas::all();
+        return view('anggota', compact('anggota', 'kelas'));
+    }
+    public function getCoachesByClass($kelasId)
+    {
+        $coaches = Coach::where('kelas_id', $kelasId)->get();
+        return response()->json($coaches);
     }
 
     public function store(Request $request)

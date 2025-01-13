@@ -117,10 +117,9 @@
                                 <label for="beladiri" class="block text-sm font-medium text-gray-700">Beladiri</label>
                                 <select id="beladiri" name="beladiri" class="mt-1 block w-full px-3 py-2 border rounded-lg focus:ring focus:ring-red-300 focus:outline-none">
                                     <option value="" disabled selected>Pilih Beladiri</option>
-                                    <option value="Muay Thai">Muay Thai</option>
-                                    <option value="Kids Warrior">Kids Warrior</option>
-                                    <option value="MMA">MMA</option>
-                                    <option value="VIP Class">VIP Class</option>
+                                    @foreach($kelas as $kelas)
+                                        <option value="{{ $kelas->nama_kelas }}">{{ $kelas->nama_kelas }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="mb-4">
@@ -136,10 +135,6 @@
                                 <label for="coach" class="block text-sm font-medium text-gray-700">Coach</label>
                                 <select id="coach" name="coach" class="mt-1 block w-full px-3 py-2 border rounded-lg focus:ring focus:ring-red-300 focus:outline-none">
                                     <option value="" disabled selected>Pilih Coach kamu</option>
-                                    <option value="Abe">Abe</option>
-                                    <option value="Jonathan">Jonathan</option>
-                                    <option value="Alex">Alex</option>
-                                    <option value="Samuel">Samuel</option>
                                 </select>
                             </div>
                             <div class="flex justify-end space-x-2">
@@ -171,7 +166,7 @@
                 </div>
                 <div class="mb-4">
                     <label for="editPhone" class="block text-sm font-medium text-gray-700">No Telp</label>
-                    <input type="text" id="editPhone" name="phone" class="mt-1 block w-full px-3 py-2 border rounded-lg focus:ring focus:ring-red-300 focus:outline-none">
+                    <input type="number" id="editPhone" name="phone" class="mt-1 block w-full px-3 py-2 border rounded-lg focus:ring focus:ring-red-300 focus:outline-none">
                 </div>
                 <div class="mb-4">
                     <label for="editGender" class="block text-sm font-medium text-gray-700">Jenis Kelamin</label>
@@ -252,5 +247,26 @@
             });
         @endif
     </script>
+    <script>
+        document.getElementById('beladiri').addEventListener('change', function() {
+            const kelasId = this.value;
+            const coachSelect = document.getElementById('coach');
+            
+            // Clear current options
+            coachSelect.innerHTML = '<option value="" disabled selected>Pilih Coach kamu</option>';
+            
+            // Fetch coaches for selected class
+            fetch(`/get-coaches/${kelasId}`)
+                .then(response => response.json())
+                .then(coaches => {
+                    coaches.forEach(coach => {
+                        const option = document.createElement('option');
+                        option.value = coach.nama;
+                        option.textContent = coach.nama;
+                        coachSelect.appendChild(option);
+                    });
+                });
+        });
+        </script>
 </body>
 </html>
