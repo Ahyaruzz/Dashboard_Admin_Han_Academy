@@ -12,8 +12,14 @@ Route::post('/post-login-admin', [AdminController::class, 'AdminLogin'])->name('
 
 Route::middleware(['auth:admin'])->group(function () {
     Route::get('/dashboard', [AnggotaController::class, 'home'])->name('anggota.home');
-    Route::resource('anggota', AnggotaController::class);
     Route::get('/kelas', [AnggotaController::class, 'kelas'])->name('kelas');
-    Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout');
     Route::get('/get-coaches/{kelasId}', [AnggotaController::class, 'getCoachesByClass']);
+    
+    // Anggota routes
+    Route::post('/anggota', [AnggotaController::class, 'store'])->name('anggota.store');
+    Route::get('/anggota', [AnggotaController::class, 'index'])->name('anggota.index');
+    Route::delete('/anggota/{id}', [AnggotaController::class, 'destroy'])->name('anggota.destroy');
+    Route::put('/anggota/{id}', [AnggotaController::class, 'update'])->name('anggota.update'); // Gunakan PUT method
+    Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+
 });

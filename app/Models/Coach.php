@@ -8,9 +8,17 @@ class Coach extends Model
 {
     protected $table = 'coach';
     protected $fillable = ['nama', 'kelas_id'];
+    
+    protected $casts = [
+        'kelas_id' => 'integer'
+    ];
 
-    public function kelas()
+    public function toArray()
     {
-        return $this->belongsTo(Kelas::class);
+        return [
+            'id' => $this->id,
+            'nama' => $this->nama,
+            'kelas_id' => $this->kelas_id
+        ];
     }
 }

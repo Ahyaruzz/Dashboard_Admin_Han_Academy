@@ -6,26 +6,25 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('anggotas', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('phone');
-            $table->enum('gender', ['Laki-Laki','Perempuan']);
-            $table->enum('beladiri', ['Muay Thai','Kids Warrior','MMA','VIP Class']);
-            $table->enum('membership', ['Regular','Elite','VIP']);
-            $table->enum('coach', ['Alex','Abe','Jonathan','Samuel']);
+            $table->enum('gender', ['Laki-Laki', 'Perempuan']);
+            $table->enum('beladiri', ['MuayThai', 'Kids Warrior', 'MMA', 'VIP Class']);
+            $table->enum('membership', ['Regular', 'Elite', 'VIP']);
+            $table->unsignedBigInteger('coach_id');
             $table->timestamps();
+        });
+
+        // Tambahkan foreign key setelah semua tabel terbuat
+        Schema::table('anggotas', function (Blueprint $table) {
+            $table->foreign('coach_id')->references('id')->on('coach');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('anggotas');
