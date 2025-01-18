@@ -29,7 +29,7 @@ class AdminController extends Controller
         }
 
         return back()->withErrors([
-            'error' => 'Username atau password salah'
+            'error' => 'Username atau password salah !'
         ])->withInput($request->except('password'));
     }
 

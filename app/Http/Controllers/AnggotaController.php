@@ -131,7 +131,7 @@ class AnggotaController extends Controller
         $anggota = Anggota::findOrFail($id);
         $anggota->delete();
 
-        return redirect()->route('anggota.index')->with('success', 'Anggota deleted successfully.');
+        return redirect()->route('anggota.index')->with('success', 'Anggota berhasil di Hapus');
     }
 
     public function update(Request $request, $id)

@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('coach', function (Blueprint $table) {
             $table->id();
-            $table->enum('nama', ['Coach Abe','Coach Alex','Coach Jonathan','Coach Samuel']);
+            $table->string('nama');
             $table->foreignId('kelas_id')->constrained('kelas');
             $table->timestamps();
         });
